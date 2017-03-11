@@ -11,18 +11,17 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-Route::get('/', 'IndexController@index');
-
-
-Route::group(['middleware' => ['auth']], function () {
-	Route::get('profile','UserController@profile');
+Route::get('/', function () {
+	return view('index');
 });
+
+Route::get('book', function () {
+	return view('book');
+});
+
+Route::get('profile','UserController@profile');
+Route::get('editprofile','UserController@edit');
+Route::post('editprofile','UserController@update');
 
 
 Auth::routes();
-
-// Route::get('/home', 'HomeController@index');

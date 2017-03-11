@@ -97,7 +97,7 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <div class="item active">
-            <img src="img/slide1.jpg" alt="Перший слайд">
+            <img src="img/slider/slide1.jpg" alt="Перший слайд">
             <div class="container">
               <div class="carousel-caption">
                 <h1>Електронна бібліотека</h1>
@@ -106,7 +106,7 @@
             </div>
           </div>
           <div class="item">
-            <img src="img/slide2.jpg" alt="Другий слайд">
+            <img src="img/slider/slide2.jpg" alt="Другий слайд">
             <div class="container">
               <div class="carousel-caption">
                 <h1>Вислів про книгу</h1>

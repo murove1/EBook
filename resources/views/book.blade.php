@@ -1,7 +1,5 @@
    @extends('layouts.page')
 
-
-<!-- @section('pageTitle', 'Книга Тест Тестова') -->
    @section('content')
    <div class="row">
 

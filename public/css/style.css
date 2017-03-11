@@ -397,9 +397,9 @@ body{
   border-bottom-left-radius: 0;
 }
 
-.help-block{
+/*.help-block{
   text-align: center;
-}
+}*/
 /* /Reset */
 
 /* Admin */
@@ -497,3 +497,18 @@ body{
   color: #aaa;
 }
 /* /Admin */
+
+/* Profile */
+.img-circle{
+  margin: 0 auto;
+}
+
+.list-group{
+  margin-top: 15px;
+}
+
+.edit_caption{
+  margin-top: 10px;
+  text-align: center;
+}
+/* /Profile */
