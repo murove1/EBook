@@ -11,17 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-	return view('index');
-});
+//Main route
+Route::get('/', 'BookController@index');
 
-Route::get('book', function () {
-	return view('book');
-});
+// Book route
+Route::resource('book', 'BookController');
 
-Route::get('profile','UserController@profile');
-Route::get('editprofile','UserController@edit');
-Route::post('editprofile','UserController@update');
+//Profile route
+Route::resource('user', 'UserController');
 
 
+// Authentication routes
 Auth::routes();

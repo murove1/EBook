@@ -16,17 +16,58 @@ class UserController extends Controller
 	}
 
 	//show user profile
-	public function profile()
+	public function show($id)
 	{
-		$user = Auth::user();
-		return view('profile', ['user' => $user]);
+		$user = Auth::user()->find($id);
+
+		//User does not exist
+		if ($user == null) {
+			return redirect('/');
+		}
+
+		return view('profile.show', ['user' => $user]);
 	}
 
 	//edit user info
-	public function edit(){
+	public function edit($id){
+
 		$user = Auth::user();
-		return view('editprofile', ['user' => $user]);
+
+		//Users data protection
+		if ($user != Auth::user()->find($id)) {
+			return redirect('/');
+		}
+
+		return view('profile.edit', ['user' => $user]);
 	}
+
+	public function store($id)
+	{
+		$this->validate($request, [
+			'name' => 'required|max:20',
+			'email' => 'required',
+			'bio' => 'max:255',
+			'avatar' => 'image',
+			]);
+
+		$user = new User;
+		
+		if($request->hasFile('avatar')){
+			$avatar = $request->file('avatar');
+			$filename = rand(11111111, 99999999). '.' . $avatar->getClientOriginalExtension();
+			Image::make($avatar)->resize(300, 300)->save( public_path('/upload/users/avatar/' . $filename ) );
+			$user->avatar = $filename;
+		}
+
+		$user->name = $request->input('name');
+		$user->email = $request->input('email');
+		$user->bio = $request->input('bio');
+
+		$user->save();
+
+		return redirect()->route('user.show', $user->id);
+	}
+
 	//update info user
 	public function update(Request $request)
 	{
@@ -41,15 +82,17 @@ class UserController extends Controller
 
 		if($request->hasFile('avatar')){
 			$avatar = $request->file('avatar');
-			$filename = time() . '.' . $avatar->getClientOriginalExtension();
-			Image::make($avatar)->resize(300, 300)->save( public_path('/img/avatar/' . $filename ) );
+			$filename = rand(11111111, 99999999). '.' . $avatar->getClientOriginalExtension();
+			Image::make($avatar)->resize(300, 300)->save( public_path('/upload/users/avatar/' . $filename ) );
 			$user->avatar = $filename;
 		}
 
 		$user->name = $request->input('name');
 		$user->email = $request->input('email');
 		$user->bio = $request->input('bio');
+
 		$user->save();
-		return redirect('profile');
+
+		return redirect()->route('user.show', $user->id);
 	}
 }

@@ -39,21 +39,25 @@
       <div class="row">
         <div class="col-md-3">
           <div class="book-box">
-           <img class="img-thumbnail" src="http://progbook.ru/images/covers/nyuman-osvoy-samostoyatelno-php-10-minut-na-urok.jpg" alt="">
-           <button type="button" class="btn btn-success"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Читати</button>
-           <button type="button" class="btn btn-success"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+           <img class="img-thumbnail" src="/upload/books/img/{{ $book->book_img }}" alt="{{ $book->title }}">
+           <div class="col-md-12">
+             <a href="/upload/books/file/{{ $book->book_file }}"><button type="button" class="btn btn-success"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Читати</button></a>
+             <button type="button" class="btn btn-success"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+           </div>
          </div>
        </div>
        <div class="col-md-9">
          <div class="book-caption">
-           <h4>Книга ТестТест</h4>
+           <h4>{{ $book->title }}</h4>
            <div class="book-ratings">
             <p class="pull-right"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 1225 </p>
             <p class="pull-right"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 100 </p>
-            <p class="category">Категорія#</p>
+            <p class="category">{{ $book->category->name }}</p>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum temporibus id, nemo nostrum provident itaque voluptate facilis totam pariatur consectetur sunt debitis at, iste, rerum libero atque praesentium cum vitae.</p>
-
+          <p>{{ $book->body }}</p>
+          <p>{{ $book->author }}</p>
+          <p>{{ $book->page }}</p>
+          <p>{{ $book->year }}</p>
           <h2 style="text-align:center;">Social repost</h2>
         </div>
       </div>

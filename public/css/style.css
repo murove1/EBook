@@ -131,8 +131,12 @@ body{
 /* /Menu */
 
 /* Content */
-.thumbnail img {
-  padding-top: 10px;
+
+.thumbnail a>img, img {
+  width: 160px; 
+  height: 235px;
+  padding-top: 5px;
+  text-decoration: none;
 }
 
 .ratings {
@@ -141,13 +145,11 @@ body{
   border-top: 1px solid #ddd;
 }
 
-.thumbnail {
-  padding: 0;
-}
-
-.caption {
-  height: 130px;
+.thumbnail .caption{
+  height: 180px;
+  padding: 0px;
   text-align: center;
+  white-space: normal;
   overflow: hidden;
 }
 
@@ -178,7 +180,12 @@ body{
   color: #555;
 }
 
-.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover{
+.pagination>.active>a, 
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover{
   color: #555;
   background-color: #e7e7e7;
   border-color: #e7e7e7;
@@ -189,7 +196,6 @@ body{
 .book-box{
   text-align: center;
 }
-
 
 .book-box .btn{
   margin-top: 10px;

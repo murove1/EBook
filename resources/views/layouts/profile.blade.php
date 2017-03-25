@@ -54,6 +54,9 @@
               <div class="nav navbar-nav navbar-right">
                <!-- Authentication caption -->
                @if (Auth::guest())
+             <!-- <button type="button" class="btn btn-success">
+                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Вхід
+              </button> -->
               <li><a href="{{ route('login') }}">Вхід</a></li>
               <li><a href="{{ route('register') }}">Реєстрація</a></li>
               @else
