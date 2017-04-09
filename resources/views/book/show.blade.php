@@ -48,16 +48,16 @@
        </div>
        <div class="col-md-9">
          <div class="book-caption">
-           <h4>{{ $book->title }}</h4>
-           <div class="book-ratings">
+         <h4> {{ $book->title }} </h4>
+         <div class="book-ratings">
             <p class="pull-right"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 1225 </p>
-            <p class="pull-right"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 100 </p>
-            <p class="category">{{ $book->category->name }}</p>
+            <p class="pull-right"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 100 </p> 
           </div>
-          <p>{{ $book->body }}</p>
-          <p>{{ $book->author }}</p>
-          <p>{{ $book->page }}</p>
-          <p>{{ $book->year }}</p>
+          <p>Жанр: {{ $book->category->name }} </p>
+          <p> Автор: {{ $book->author }} </p>
+          <p> Сторінок: {{ $book->page }}.ст </p>
+          <p>Рік видання: {{ $book->year }} </p>
+          <p> {{ $book->body }} </p>
           <h2 style="text-align:center;">Social repost</h2>
         </div>
       </div>

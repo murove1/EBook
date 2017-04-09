@@ -54,98 +54,103 @@
               <div class="nav navbar-nav navbar-right">
                <!-- Authentication caption -->
                @if (Auth::guest())
-              <li><a href="{{ route('login') }}">Вхід</a></li>
-              <li><a href="{{ route('register') }}">Реєстрація</a></li>
-              @else
-              <li><a href="{{ route('book.create') }}" title="Додати книгу"><span class="glyphicon glyphicon-plus"></span></a></li>
-              <li class="dropdown">
+               <li><a href="{{ route('login') }}">Вхід</a></li>
+               <li><a href="{{ route('register') }}">Реєстрація</a></li>
+               @else
+               <li><a href="{{ route('book.create') }}" title="Додати книгу"><span class="glyphicon glyphicon-plus"></span></a></li>
+               <li class="dropdown">
                 <a href="#" class="dropdown-toggle_profile" data-toggle="dropdown" role="button" aria-expanded="false">
                   <img class="user-avatar" alt="avatar" src="/upload/users/avatar/{{ Auth::user()->avatar }}">
                   {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
-
                 <ul class="dropdown-menu" role="menu">
-                 <li><a href="{{ route('user.show', Auth::user()->id)}}"><span class="glyphicon glyphicon-user"></span> Профіль</a></li>
-                 <li>
-                  <a href="{{ route('logout') }}"
-                  onclick="event.preventDefault();
-                  document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> Вихід</a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                  </form>
+                  @if ( Auth::user()->role()->first()->name =='Admin' )
+                  <li><a href="{{ url('dashboard')}}"><span class="glyphicon glyphicon-cog"></span> Панель керування</a></li>
+                  @endif
+                  <li><a href="{{ route('user.show', Auth::user()->id)}}"><span class="glyphicon glyphicon-user"></span> Профіль</a>
+                  </li>
+                  <li>
+                    <li><a href="{{ url('mybooks') }}"><span class="glyphicon glyphicon-book"></span> Моя Бібліотека</a></li>
+                    <li>
+                      <a href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> Вихід</a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                      </form>
+                    </li>
+                  </ul>
                 </li>
-              </ul>
-            </li>
-            @endif
-          </div>
-        </div>
-      </div>
-    </nav>
-    <!-- /Static navbar -->
-
-    <!-- Carousel -->
-    <div id="Carousel" class="hidden-xs carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#Carousel" data-slide-to="1"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img src="/img/slider/slide1.jpg" alt="Перший слайд">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Електронна бібліотека</h1>
-              <p>Розподілена інформаційна система, що дозволяє зберігати і використовувати різнорідні колекції електронних документів.</p>
+                @endif
+              </div>
             </div>
           </div>
-        </div>
-        <div class="item">
-          <img src="/img/slider/slide2.jpg" alt="Другий слайд">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Вислів про книгу</h1>
-              <p>"Хто полюбить книгу, той далеко піде у своєму розвитку. Книга рятує душу від здерев’яніння." - Шевченко Т. Г.</p>
+        </nav>
+        <!-- /Static navbar -->
+
+        <!-- Carousel -->
+        <div id="Carousel" class="hidden-xs carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#Carousel" data-slide-to="1"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <img src="/img/slider/slide1.jpg" alt="Перший слайд">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>Електронна бібліотека</h1>
+                  <p>Розподілена інформаційна система, що дозволяє зберігати і використовувати різнорідні колекції електронних документів.</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="/img/slider/slide2.jpg" alt="Другий слайд">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>Вислів про книгу</h1>
+                  <p>"Хто полюбить книгу, той далеко піде у своєму розвитку. Книга рятує душу від здерев’яніння." - Шевченко Т. Г.</p>
+                </div>
+              </div>
             </div>
           </div>
+          <a class="left carousel-control" href="#Carousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Попередня</span>
+          </a>
+          <a class="right carousel-control" href="#Carousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Наступна</span>
+          </a>
         </div>
-      </div>
-      <a class="left carousel-control" href="#Carousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Попередня</span>
-      </a>
-      <a class="right carousel-control" href="#Carousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Наступна</span>
-      </a>
-    </div>
-    <!-- /Carousel -->
+        <!-- /Carousel -->
 
-    <!-- Container -->
-    <div class="container">
-      @yield('content')
-    </div> 
-    <!-- /Container -->
+        <!-- Container -->
+        <div class="container">
+          @yield('content')
+        </div> 
+        <!-- /Container -->
 
 
-    <!-- footer -->
-    <footer class="footer">
-      <div class="container">
-        <ul class="footer-links">
-          <li><a href="#">Зворотній зв'язок</a></li>
-          <li><a href="#top">Вверх</a></li>
-          <li><strong>EBook © 2017</strong></li>
-        </ul>
-      </div>
-    </footer>
-    <!-- /footer -->
+        <!-- footer -->
+        <footer class="footer">
+          <div class="container">
+            <ul class="footer-links">
+              <li><a href="#">Зворотній зв'язок</a></li>
+              <li><a href="#top">Вверх</a></li>
+              <li><strong>EBook © 2017</strong></li>
+            </ul>
+          </div>
+        </footer>
+        <!-- /footer -->
 
 
 
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/js/bootstrap.min.js"></script>
-  </body>
-  </html>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="/js/bootstrap.min.js"></script>
+      </body>
+      </html>

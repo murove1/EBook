@@ -21,10 +21,12 @@ class CreateBooksTable extends Migration
             $table->integer('page');
             $table->text('body');
             $table->integer('category_id')->nullable()->unsigned();
+            $table->integer('user_id')->nullable()->unsigned();
             $table->string('book_img')->default('default.jpg');
             $table->string('book_file');
             $table->timestamps();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 
@@ -35,7 +37,7 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
-                Schema::table('books', function (Blueprint $table) {
+        Schema::table('books', function (Blueprint $table) {
             $table->dropColumn('books');
         });
     }

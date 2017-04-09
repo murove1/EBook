@@ -26,7 +26,7 @@
         <div class="form-group">
          <div class="col-md-12">
            <label class="control-label" for="name">Ім'я</label>
-           <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" >
+           <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" required>
          </div>
        </div>
        <div class="form-group">

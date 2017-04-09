@@ -19,7 +19,14 @@ Route::resource('book', 'BookController');
 
 //Profile route
 Route::resource('user', 'UserController');
+Route::get('mybooks', 'UserController@mybooks');
 
+//Admin routes
+Route::get('dashboard', 'AdminController@index');
+Route::get('dashboard/books', 'AdminController@books');
+Route::get('dashboard/categories', 'AdminController@categories');
+Route::get('dashboard/users', 'AdminController@users');
+Route::get('dashboard/messages', 'AdminController@messages');
 
 // Authentication routes
 Auth::routes();

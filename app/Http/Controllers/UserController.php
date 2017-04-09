@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Book;
 use Auth;
 use Image;
 
@@ -34,8 +35,8 @@ class UserController extends Controller
 		$user = Auth::user();
 
 		//Users data protection
-		if ($user != Auth::user()->find($id)) {
-			return redirect('/');
+		if ($user != $user->find($id)) {
+			return redirect()->route('user.show', $user->id);
 		}
 
 		return view('profile.edit', ['user' => $user]);
@@ -94,5 +95,11 @@ class UserController extends Controller
 		$user->save();
 
 		return redirect()->route('user.show', $user->id);
+	}
+
+	public function mybooks()
+	{
+		$books = Auth::user()->books;
+		return view('profile.mybooks', ['books' => $books]);
 	}
 }

@@ -48,7 +48,7 @@ body{
   position: absolute; 
   top: 10px; 
   left: 10px; 
-  border-radius: 50%
+  border-radius: 50%;
 }
 /* /navbar */
 
@@ -132,7 +132,7 @@ body{
 
 /* Content */
 
-.thumbnail a>img, img {
+.thumbnail a>img{
   width: 160px; 
   height: 235px;
   padding-top: 5px;
@@ -206,9 +206,7 @@ body{
 }
 
 .book-ratings{
-  padding-top: 10px;
   margin-bottom: 10px;
-  border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
 }
 
@@ -516,5 +514,9 @@ body{
 .edit_caption{
   margin-top: 10px;
   text-align: center;
+}
+
+.user_panel{
+  margin-top: 40px;
 }
 /* /Profile */
