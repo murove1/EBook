@@ -5,13 +5,13 @@
       <div class="row">
          <ol class="breadcrumb">
             <li><a href="{{ url('dashboard') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-            <li class="active">Повідомлення</li>
+            <li class="active">Telegram Бот</li>
          </ol>
       </div><!--/.row-->
       
       <div class="row">
          <div class="col-lg-12">
-            <h1 class="page-header">Повідомлення</h1>
+            <h1 class="page-header">Telegram Бот</h1>
          </div>
       </div><!--/.row-->
 
@@ -19,17 +19,9 @@
       <div class="row">
          <div class="col-lg-12">
             <div class="panel panel-default">
-               <div class="panel-heading">Переглянути повідомлення</div>
+               <div class="panel-heading">Керування Telegram Ботом</div>
                <div class="panel-body">
-                @foreach($messages as $message)
-            {{ $message->id}}
-            {{ $message->name}}
-            {{ $message->message}}
-            {{ $message->created_at}}
-            {{ $message->updated_at}}
-            @endforeach
-
-            
+  
            </div>
         </div>
      </div>

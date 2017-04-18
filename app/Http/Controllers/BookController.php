@@ -19,8 +19,8 @@ class BookController extends Controller
 	//Output of books to home page
 	public function index()
 	{
-		$books = Book::orderBy('id', 'desc')->paginate(3);
-		return view('content', ['books' => $books]);
+		$books = Book::orderBy('id', 'desc')->paginate(9);
+		return view('index', ['books' => $books]);
 	}
 
 	//Output book to book page
@@ -80,6 +80,8 @@ class BookController extends Controller
 		}
 
 		$book->save();
+
+		file_get_contents('https://api.telegram.org/bot346608259:AAGnmJEREq-s6W3aiTUKMfSVJ1csgqXFeCM/sendMessage?chat_id=-1001109045252&text= На+сайт+завантажена+нова+книга: ' .$book->title );
 
 		return redirect()->route('book.show', $book->id);
 	}

@@ -18,7 +18,7 @@
             @endif
         </div>
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-            <label for="email" class="sr-only">E-Мейл</label>
+            <label for="email" class="sr-only">E-Mail</label>
             <input id="email" type="email" class="form-control" placeholder="E-Mail" name="email" value="{{ old('email') }}" required>
 
             @if ($errors->has('email'))

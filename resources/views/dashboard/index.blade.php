@@ -62,7 +62,7 @@
    						<svg class="glyph stroked email"><use xlink:href="#stroked-email"/></svg>
    					</div>
    					<div class="col-sm-9 col-lg-7 widget-right">
-   						<div class="large">66</div>
+   						<div class="large">{{ $messages = DB::table('messages')->count() }}</div>
    						<div class="text-muted">Повідомлень</div>
    					</div>
    				</div>

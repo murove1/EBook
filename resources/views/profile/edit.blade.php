@@ -4,7 +4,7 @@
  <div class="row">
    <!-- Panel -->
    <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
-    <div class="panel panel-default">
+    <div class="panel panel-default default_panel">
      <div class="panel-heading"><span class="glyphicon glyphicon-pencil"></span><strong> Змінити інформацію в профілі {{Auth::user()->name }}</strong></div>
      <div class="panel-body">
 
@@ -40,7 +40,7 @@
           <label class="control-label">Про себе:</label>
           <textarea name="bio" style="resize:none;" class="form-control" rows="4">{{ Auth::user()->bio }}</textarea>
         </div>
-      </div> 
+      </div>
       <div class="form-group">
         <div class="col-md-12">
           <label for="avatar">Аватар</label>

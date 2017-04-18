@@ -120,7 +120,6 @@
 </div>
 @endforeach
 
-<!-- Pagination -->
 </div>
 <div class="col-md-12 text-center">
     {{ $books->links()}}

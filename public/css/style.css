@@ -335,19 +335,19 @@ body{
   z-index: 2;
 }
 
-.form-feedback input[type="email"] {
+.form-feedback input[name="email"] {
   margin-bottom: 15px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.form-feedback input[type="name"] {
+.form-feedback input[name="name"] {
   margin-bottom: 15px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.form-feedback input[type="message"] {
+.form-feedback input[name="message"] {
   margin-bottom: 15px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -516,7 +516,8 @@ body{
   text-align: center;
 }
 
-.user_panel{
+/* no profile */
+.default_panel{
   margin-top: 40px;
 }
 /* /Profile */

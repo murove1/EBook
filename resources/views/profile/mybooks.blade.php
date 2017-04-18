@@ -3,7 +3,7 @@
  @section('content')
  <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
-    <div class="panel panel-default user_panel">
+    <div class="panel panel-default default_panel">
       <div class="panel-body">
         <div class="col-md-12">
           <div class="row">
@@ -12,8 +12,8 @@
                 <tr>
                   <th class="text-center">Назва</th>
                   <th class="text-center">Жанр</th>
-                  <th class="text-center">Дата додавання</th>
-                  <th class="text-center"><span class="glyphicon glyphicon-eye-open"></span> / <span class="glyphicon glyphicon-heart"></span></th>
+                  <th class="text-center hidden-xs">Дата додавання</th>
+                  <th class="text-center hidden-xs"><span class="glyphicon glyphicon-eye-open"></span> / <span class="glyphicon glyphicon-heart"></span></th>
                   <th class="text-center">Керування</th>
                 </tr>
               </thead>
@@ -23,10 +23,10 @@
                <tr>
                  <td class="text-center"> <a href="{{ url('/book', $book->id) }}">{{ $book->title }} </a> </td>
                  <td class="text-center"> {{ $book->category->name }} </td>
-                 <td class="text-center"> {{ $book->created_at}} </td>
-                 <td class="text-center"> 840/544 </td>
+                 <td class="text-center hidden-xs"> {{ $book->created_at}} </td>
+                 <td class="text-center hidden-xs"> 840/544 </td>
                  <td class="text-center">
-                  <a href="{{ route('book.edit', $book->id)}}"> <button class="btn btn-primary btn-sm">Змінити</button></a>
+                  <a href="{{ route('book.edit', $book->id)}}"> <button class="btn btn-primary btn-sm" style="margin-bottom: 10px;">Змінити</button></a>
 
                   <form action="{{ route('book.destroy', $book->id) }}" method="post">
                     {{ csrf_field() }}

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -71,8 +71,11 @@
                   @if ( Auth::user()->role()->first()->name =='Admin' )
                   <li><a href="{{ url('dashboard')}}"><span class="glyphicon glyphicon-cog"></span> Панель керування</a></li>
                   @endif
-                  <li><a href="{{ route('user.show', Auth::user()->id)}}"><span class="glyphicon glyphicon-user"></span> Профіль</a></li>
+                  <li><a href="{{ route('user.show', Auth::user()->id)}}"><span class="glyphicon glyphicon-user"></span> Мій Профіль</a></li>
                   <li><a href="{{ url('mybooks') }}"><span class="glyphicon glyphicon-book"></span> Моя Бібліотека</a></li>
+                  <li>
+                  <li><a href="{{ route('user.edit', Auth::user()->id) }}"><span class="glyphicon glyphicon-cog"></span> Мої Настройки</a></li>
+                  <li><a href="{{ url('setting') }}"><span class="glyphicon glyphicon-lock"></span> Змінити пароль</a></li>
                   <li>
                     <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
@@ -101,7 +104,7 @@
       <footer class="footer">
         <div class="container">
           <ul class="footer-links">
-            <li><a href="#">Зворотній зв'язок</a></li>
+            <li><a href="{{ url('feedback') }}">Зворотній зв'язок</a></li>
             <li><a href="#top">Вверх</a></li>
             <li><strong>EBook © 2017</strong></li>
           </ul>
