@@ -7,44 +7,52 @@
       <div class="panel-body">
         <div class="col-md-12">
           <div class="row">
-            <table class="table table-responsive table-hover">
+            <table id="TablemyBooks" class="table table-responsive table-hover">
               <thead>
                 <tr>
-                  <th class="text-center">Назва</th>
-                  <th class="text-center">Жанр</th>
-                  <th class="text-center hidden-xs">Дата додавання</th>
-                  <th class="text-center hidden-xs"><span class="glyphicon glyphicon-eye-open"></span> / <span class="glyphicon glyphicon-heart"></span></th>
-                  <th class="text-center">Керування</th>
+                  <th>Назва</th>
+                  <th>Жанр</th>
+                  <th class="hidden-xs">Дата додавання</th>
+                  <th class="hidden-xs">
+                    <span class="glyphicon glyphicon-eye-open"></span> / 
+                    <span class="glyphicon glyphicon-heart"></span>
+                  </th>
+                  <th>Керування</th>
                 </tr>
               </thead>
-              <tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
 
-               @foreach($books as $book)
-               <tr>
-                 <td class="text-center"> <a href="{{ url('/book', $book->id) }}">{{ $book->title }} </a> </td>
-                 <td class="text-center"> {{ $book->category->name }} </td>
-                 <td class="text-center hidden-xs"> {{ $book->created_at}} </td>
-                 <td class="text-center hidden-xs"> 840/544 </td>
-                 <td class="text-center">
-                  <a href="{{ route('book.edit', $book->id)}}"> <button class="btn btn-primary btn-sm" style="margin-bottom: 10px;">Змінити</button></a>
-
-                  <form action="{{ route('book.destroy', $book->id) }}" method="post">
-                    {{ csrf_field() }}
-                    <input name="_method" type="hidden" value="DELETE">
-                    <input class="btn btn-danger btn-sm" type="submit" value="Видалити">
-                  </form>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
         </div>
       </div>
-      <div class="col-md-12 text-center">
-
-      </div>
     </div>
-  </div>
-</div> <!-- /.row -->
+  </div> <!-- /.row -->
 </div>
+<script>
+  $(document).ready(function() {
+    $('#TablemyBooks').DataTable( {
+      "lengthChange": false,
+      "ajax": "{{ route('getmybooks') }}",
+      "columns": [
+      {data: 'title', name: 'title'},
+      {data: 'category', name: 'category'},
+      {data: 'created_at', name: 'created_at'},
+      {data: 'rate', name: 'rate'},
+      {data: 'action', name: 'action',"orderable": false}
+      ],
+      "language": {
+        "lengthMenu": "Показати _MENU_ записів на сторінці",
+        "zeroRecords": "Запитів не знайдено",
+        "info": "Показано сторінку _PAGE_ з _PAGES_",
+        "search": "Пошук:",
+        "paginate": {
+          "previous": "Попередня",
+          "next": "Наступна"
+        }
+      }
+    } );
+  } );
+</script>
 @endsection

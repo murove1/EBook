@@ -11,6 +11,16 @@
   <!-- Bootstrap -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/style.css" rel="stylesheet">
+
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <!-- disqus js -->
+  <script id="dsq-count-scr" src="//ebook-3.disqus.com/count.js" async></script>
+
+  <!-- social -->
+  <script defer src="/js/share.js"></script>
+  
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -42,14 +52,14 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li><a href="{{ url('/') }}">Головна</a></li>
-                <li><a href="#">Пункт2</a></li>
-                <li><a href="#">Пункт3</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Жанри <span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Автори <span class="caret"></span></a>
                   <ul class="dropdown-menu">    
                     <li><a href="#">1</a></li>   
                   </ul>
                 </li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Про Сайт</a></li>
               </ul>
               <div class="nav navbar-nav navbar-right">
                <!-- Authentication caption -->
@@ -64,15 +74,15 @@
                   {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                  @if ( Auth::user()->role()->first()->name =='Admin' )
-                  <li><a href="{{ url('dashboard')}}"><span class="glyphicon glyphicon-cog"></span> Панель керування</a></li>
+                  @if ( Auth::user()->roles()->first()->name =='Admin' )
+                  <li><a href="{{ route('dashboard')}}"><span class="glyphicon glyphicon-cog"></span> Панель керування</a></li>
                   @endif
                   <li><a href="{{ route('user.show', Auth::user()->id)}}"><span class="glyphicon glyphicon-user"></span> Мій Профіль</a>
                   </li>
                   <li>
-                    <li><a href="{{ url('mybooks') }}"><span class="glyphicon glyphicon-book"></span> Моя Бібліотека</a></li>
+                    <li><a href="{{ route('mybooks') }}"><span class="glyphicon glyphicon-book"></span> Моя Бібліотека</a></li>
                     <li><a href="{{ route('user.edit', Auth::user()->id) }}"><span class="glyphicon glyphicon-cog"></span> Мої Настройки</a></li>
-                    <li><a href="{{ url('setting') }}"><span class="glyphicon glyphicon-lock"></span> Змінити пароль</a></li>
+                    <li><a href="{{ route('setting') }}"><span class="glyphicon glyphicon-lock"></span> Змінити пароль</a></li>
                     <li>
                       <a href="{{ route('logout') }}"
                       onclick="event.preventDefault();
@@ -130,29 +140,131 @@
 
         <!-- Container -->
         <div class="container">
-          @yield('content')
-        </div> 
-        <!-- /Container -->
-
-
-        <!-- footer -->
-        <footer class="footer">
-          <div class="container">
-            <ul class="footer-links">
-              <li><a href="{{ url('feedback') }}">Зворотній зв'язок</a></li>
-              <li><a href="#top">Вверх</a></li>
-              <li><strong>EBook © 2017</strong></li>
-            </ul>
+          <!-- Menu -->
+          <div class="col-md-3">
+           <div class="panel panel-default">
+            <div class="panel-heading">
+              <form role="form" method="get" action="{{ route('book.index') }}">
+               <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Пошук" value="{{ isset($search) ? $search : '' }}">
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </button>
+                </span>
+              </div>
+            </form>
           </div>
-        </footer>
-        <!-- /footer -->
+
+        </div>
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-book">
+                </span> Книги</a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <table class="table">
+                  <tr>
+                    <td>
+                      <span class="glyphicon glyphicon-eye-open"></span><a href="#"> Топ переглядів</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <tr>
+                      <td>
+                        <span class="glyphicon glyphicon-heart"></span><a href="#"> Топ вподобань</a>
+                      </td>
+                    </tr>
+                    <td>
+                      <span class="glyphicon glyphicon-time"></span><a href="#"> Новинки</a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-bookmark">
+                </span> Жанри</a>
+              </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+              <div class="panel-body">
+                <table class="table">
+                  <tr>
+                    <td>
+                      <a href="#">Тест</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#">Тест</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#">Тест</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#">Тест</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#">Тест</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#">Тест</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#">Тест</a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div> 
+      <!-- /Menu --> 
+
+      @yield('content')
+
+    </div> 
+    <!-- /Container -->
+
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="container">
+        <ul class="footer-links">
+          <li><a href="{{ route('feedback.create') }}">Зворотній зв'язок</a></li>
+          <li><a href="#top">Вверх</a></li>
+          <li><strong>EBook © 2017</strong></li>
+        </ul>
+      </div>
+    </footer>
+    <!-- /footer -->
 
 
 
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="/js/bootstrap.min.js"></script>
-      </body>
-      </html>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+  </html>

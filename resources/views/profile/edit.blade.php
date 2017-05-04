@@ -32,7 +32,7 @@
        <div class="form-group">
          <div class="col-md-12">
            <label class="control-label" for="email">Е-мейл</label>
-           <input type="text" name="email" class="form-control" value="{{ Auth::user()->email }}" required>
+           <input type="email" name="email" class="form-control" value="{{ Auth::user()->email }}" required>
          </div>
        </div>
        <div class="form-group">  

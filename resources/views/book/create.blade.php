@@ -81,6 +81,11 @@
         </div>
         <div class="form-group">
           <div class="col-md-12">
+          <input type="checkbox" name="telegram_notification" value="1" checked> Відправити оповіщення в Telegram.
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-12">
             <button class="btn btn-success" type="submit"> Додати</button>
           </div>
         </div>

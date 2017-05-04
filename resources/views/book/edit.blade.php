@@ -5,7 +5,7 @@
      <!-- Panel -->
      <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
       <div class="panel panel-default default_panel">
-       <div class="panel-heading"><strong>Змінити книгу</strong></div>
+       <div class="panel-heading"><strong>Змінити дані книги</strong></div>
        <div class="panel-body">
 
          <!-- Errors -->
@@ -52,7 +52,7 @@
            <div class="col-md-12">
             <label class="control-label">Жанр</label>
             <select class="form-control" name="category_id">
-
+              
               @foreach($categories as $category)
               <option value='{{ $category->id }}'>{{ $category->name }}</option>
               @endforeach

@@ -11,6 +11,7 @@
   <!-- Bootstrap -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/style.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,6 +19,10 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
       <!-- Scripts -->
+  <script src="/js/jquery-1.12.4.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
       <script>
         window.Laravel = {!! json_encode([
           'csrfToken' => csrf_token(),
@@ -40,16 +45,10 @@
               <a class="navbar-brand" href="{{ url('/') }}"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> EBook</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
+             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/') }}">Головна</a></li>
-                <li><a href="#">Пункт2</a></li>
-                <li><a href="#">Пункт3</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Жанри <span class="caret"></span></a>
-                  <ul class="dropdown-menu">    
-                    <li><a href="#">1</a></li>   
-                  </ul>
-                </li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Про Сайт</a></li>
               </ul>
               <div class="nav navbar-nav navbar-right">
                <!-- Authentication caption -->
@@ -68,56 +67,49 @@
                 </a>
 
                 <ul class="dropdown-menu" role="menu">
-                  @if ( Auth::user()->role()->first()->name =='Admin' )
-                  <li><a href="{{ url('dashboard')}}"><span class="glyphicon glyphicon-cog"></span> Панель керування</a></li>
+                  @if ( Auth::user()->roles()->first()->name =='Admin' )
+                  <li><a href="{{ route('dashboard')}}"><span class="glyphicon glyphicon-cog"></span> Панель керування</a></li>
                   @endif
                   <li><a href="{{ route('user.show', Auth::user()->id)}}"><span class="glyphicon glyphicon-user"></span> Мій Профіль</a></li>
-                  <li><a href="{{ url('mybooks') }}"><span class="glyphicon glyphicon-book"></span> Моя Бібліотека</a></li>
+                  <li><a href="{{ route('mybooks') }}"><span class="glyphicon glyphicon-book"></span> Моя Бібліотека</a></li>
                   <li>
-                  <li><a href="{{ route('user.edit', Auth::user()->id) }}"><span class="glyphicon glyphicon-cog"></span> Мої Настройки</a></li>
-                  <li><a href="{{ url('setting') }}"><span class="glyphicon glyphicon-lock"></span> Змінити пароль</a></li>
-                  <li>
-                    <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> Вихід</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      {{ csrf_field() }}
-                    </form>
-                  </li>
-                </ul>
-              </li>
-              @endif
+                    <li><a href="{{ route('user.edit', Auth::user()->id) }}"><span class="glyphicon glyphicon-cog"></span> Мої Настройки</a></li>
+                    <li><a href="{{ route('setting') }}"><span class="glyphicon glyphicon-lock"></span> Змінити пароль</a></li>
+                    <li>
+                      <a href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> Вихід</a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                      </form>
+                    </li>
+                  </ul>
+                </li>
+                @endif
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
-      <!-- /Static navbar -->
+        </nav>
+        <!-- /Static navbar -->
 
-      <!-- Container -->
-      <div class="container">
-        @yield('content')
-      </div> 
-      <!-- /Container -->
-
-
-      <!-- footer -->
-      <footer class="footer">
+        <!-- Container -->
         <div class="container">
-          <ul class="footer-links">
-            <li><a href="{{ url('feedback') }}">Зворотній зв'язок</a></li>
-            <li><a href="#top">Вверх</a></li>
-            <li><strong>EBook © 2017</strong></li>
-          </ul>
-        </div>
-      </footer>
-      <!-- /footer -->
+          @yield('content')
+        </div> 
+        <!-- /Container -->
 
 
-
-
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="/js/bootstrap.min.js"></script>
-    </body>
-    </html>
+        <!-- footer -->
+        <footer class="footer">
+          <div class="container">
+            <ul class="footer-links">
+              <li><a href="{{ route('feedback.create') }}">Зворотній зв'язок</a></li>
+              <li><a href="#top">Вверх</a></li>
+              <li><strong>EBook © 2017</strong></li>
+            </ul>
+          </div>
+        </footer>
+        <!-- /footer -->
+        
+      </body>
+      </html>

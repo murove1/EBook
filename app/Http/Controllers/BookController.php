@@ -17,16 +17,26 @@ class BookController extends Controller
 	}
 
 	//Output of books to home page
-	public function index()
+	public function index(Request $request)
 	{
-		$books = Book::orderBy('id', 'desc')->paginate(9);
-		return view('index', ['books' => $books]);
+		//Search book
+		$search = $request->input('search');
+		$books = Book::latest()
+		->search($search)
+		->orderBy('id')
+		->paginate(9);
+		return view('index', ['books' => $books], ['search' => $search]);
 	}
 
 	//Output book to book page
 	public function show($id)
 	{
 		$book = Book::find($id);
+
+		//book views
+		$book->views += 1;
+		$book->save();
+
 		return view('book.show', ['book' => $book]);
 	}
 
@@ -34,6 +44,7 @@ class BookController extends Controller
 	public function create()
 	{
 		$categories = Category::all();
+
 		return view('book.create', ['categories' => $categories]);
 	}
 
@@ -81,7 +92,10 @@ class BookController extends Controller
 
 		$book->save();
 
-		file_get_contents('https://api.telegram.org/bot346608259:AAGnmJEREq-s6W3aiTUKMfSVJ1csgqXFeCM/sendMessage?chat_id=-1001109045252&text= На+сайт+завантажена+нова+книга: ' .$book->title );
+		//Telegram Notification if book add
+		if($request->input('telegram_notification') == 1){
+			file_get_contents('https://api.telegram.org/bot346608259:AAGnmJEREq-s6W3aiTUKMfSVJ1csgqXFeCM/sendMessage?chat_id=-1001068698923&text= На+сайт+завантажена+нова+книга: ' .$book->title );
+		}
 
 		return redirect()->route('book.show', $book->id);
 	}
@@ -89,11 +103,12 @@ class BookController extends Controller
 	public function edit($id)
 	{
 		$book = Book::find($id);
+		
 		$categories = Category::all();
 
 		//Book data protection
 		if ($book->user_id != Auth::user()->id) {
-			return redirect('mybooks');
+			return redirect()->route('mybooks');
 		}
 
 		return view('book.edit', ['book' => $book], ['categories' => $categories]);
@@ -153,7 +168,7 @@ class BookController extends Controller
 		//delete book
 		$book->delete();
 		
-		return redirect('mybooks');
+		return redirect()->route('mybooks');
 	}
 
 }

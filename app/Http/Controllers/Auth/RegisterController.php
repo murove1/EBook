@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
+use DB;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -51,7 +54,7 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-        ]);
+            ]);
     }
 
     /**
@@ -62,10 +65,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+            ]);
+
+        //New user default role->User
+        $user->roles()->attach(Role::where('name', 'User')->first());
+
+        //Telegram Notification on new user
+        file_get_contents('https://api.telegram.org/bot346608259:AAGnmJEREq-s6W3aiTUKMfSVJ1csgqXFeCM/sendMessage?chat_id=-1001068698923&text= Вітаємо+нового+користувача+на+сайті: ' .$user->name);
+
+        return $user;
     }
 }

@@ -16,8 +16,9 @@
             <ul class="list-group">
               <li class="list-group-item"><strong>Ім'я:</strong> {{ $user->name }} </li>
               <li class="list-group-item"><strong>E-Мейл:</strong> {{ $user->email }}</li>
-              <li class="list-group-item"><strong>Дата реєстрації:</strong> {{ $user->created_at }}</li>
-              <li class="list-group-item"><strong>Книги користувача:</strong> {{ $user->books->count() }}</li>
+              <li class="list-group-item"><strong>Дата реєстрації:</strong> {{ $user->created_at->format('d/m/y') }}</li>
+              <li class="list-group-item"><strong>Книги користувача:</strong> {{ $user->books->count() }} </li>
+              <li class="list-group-item"><strong>Роль користувача:</strong> {{ $user->roles()->first()->name }} </li>
               <li class="list-group-item"><strong>Про себе:</strong> {{ $user->bio }} </li>
             </ul>
           </div>

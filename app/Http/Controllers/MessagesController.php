@@ -8,13 +8,7 @@ use Session;
 
 class MessagesController extends Controller
 {
-	//Output of messages to home page
-	public function index()
-	{
-		$messages = Message::orderBy('id', 'desc')->paginate(5);
-		return view('dashboard.messages', ['messages' => $messages]);
-	}
-
+	//Output page for create message
 	public function create()
 	{
 		return view('feedback');
@@ -40,15 +34,8 @@ class MessagesController extends Controller
 		$message->save();
 		//alert nice add .......
 
-		Session::flash('success','Ваше повідомлення відпревлено!');
+		Session::flash('success','Ваше повідомлення відправлено!');
 
-		return redirect('feedback');
-	}
-
-	public function destroy($id)
-	{
-		$message->delete();
-		
-		return redirect('');
+		return redirect()->route('feedback');
 	}
 }

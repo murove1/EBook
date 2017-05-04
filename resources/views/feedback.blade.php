@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="feedback-form">
 		<a class="logo-brand" href="{{ url('/') }}"><span class="glyphicon glyphicon-book"></span> EBook</a>
-		<form class="form-feedback" role="form" method="post" action="feedback">
+		<form class="form-feedback" role="form" method="post" action="{{ route('feedback.store') }}">
 			{{ csrf_field() }}
 			<h2 class="form-feedback-heading">Зворотній зв'язок з EBook</h2>
 

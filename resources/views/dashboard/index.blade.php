@@ -4,7 +4,7 @@
    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
    	<div class="row">
    		<ol class="breadcrumb">
-   			<li><a href="{{ url('dashboard') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+   			<li><a href="{{ route('dashboard') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
    			<li class="active">Головна</li>
    		</ol>
    	</div><!--/.row-->
@@ -33,11 +33,11 @@
    			<div class="panel panel-orange panel-widget">
    				<div class="row no-padding">
    					<div class="col-sm-3 col-lg-5 widget-left">
-   						<svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg>
+   						<svg class="glyph stroked tag"><use xlink:href="#stroked-tag"/></svg>
    					</div>
    					<div class="col-sm-9 col-lg-7 widget-right">
-   						<div class="large">52</div>
-   						<div class="text-muted">Коментарі</div>
+   						<div class="large">{{ $category = DB::table('categories')->count() }}</div>
+   						<div class="text-muted">Категорії</div>
    					</div>
    				</div>
    			</div>
@@ -73,7 +73,7 @@
    	<div class="row">
    		<div class="col-lg-12">
    			<div class="panel panel-default">
-   				<div class="panel-heading">TEXT</div>
+   				<div class="panel-heading">Привіт {{ Auth::user()->name }}</div>
    				<div class="panel-body">
    					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero commodi vel ullam est necessitatibus perferendis quia, ea velit officiis, mollitia iure unde aspernatur. Sint nisi, accusamus neque repellat impedit laudantium.
    				</div>

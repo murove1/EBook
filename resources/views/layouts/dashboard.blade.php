@@ -7,7 +7,13 @@
 
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/admin.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
   <link rel="icon" href="/img/favicon.ico">
+
+  <script src="/js/jquery-1.12.4.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
 
   <!--Icons-->
   <script src="/js/glyphs.js"></script>
@@ -35,14 +41,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ url('dashboard') }}"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> EBook</a>
+        <a class="navbar-brand" href="{{ route('dashboard') }}"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> EBook</a>
         <ul class="user-menu">
           <li class="dropdown pull-right">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="user-avatar" alt="avatar" src="/upload/users/avatar/{{ Auth::user()->avatar }}"> {{ Auth::user()->name }} <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="{{ route('user.show', Auth::user()->id)}}"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Мій Профіль</a></li>
               <li><a href="{{ route('user.edit', Auth::user()->id) }}"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Мої Настройки</a></li>
-              <li><a href="{{ url('setting') }}"><svg class="glyph stroked lock"><use xlink:href="#stroked-lock"/></svg> Змінити пароль</a></li>
+              <li><a href="{{ route('setting') }}"><svg class="glyph stroked lock"><use xlink:href="#stroked-lock"/></svg> Змінити пароль</a></li>
               <li>
                 <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
@@ -64,22 +70,19 @@
     <ul class="nav menu">
       <li role="presentation" class="divider"></li>
       <li><a href="{{ url('/') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg>Головна сайту</a></li>
-      <li class="{{ Request::is('dashboard') ? "active" : "" }}"><a href="{{ url('dashboard') }}"><svg class="glyph stroked dashboard dial"><use xlink:href="#stroked-dashboard-dial"/></svg>Панель керування</a></li>
+      <li class="{{ Request::is('dashboard') ? "active" : "" }}"><a href="{{ route('dashboard') }}"><svg class="glyph stroked dashboard dial"><use xlink:href="#stroked-dashboard-dial"/></svg>Панель керування</a></li>
       <li><a href=""><svg class="glyph stroked landscape"><use xlink:href="#stroked-landscape"/></svg> Керування слайдером</a></li>
-      <li class="{{ Request::is('dashboard/books') ? "active" : "" }}"><a href="{{ url('dashboard/books') }}"><svg class="glyph stroked open folder"><use xlink:href="#stroked-folder"></use></svg>Керування книгами</a></li>
-      <li class="{{ Request::is('dashboard/categories') ? "active" : "" }}"><a href="{{ url('dashboard/categories') }}"><svg class="glyph stroked tag"><use xlink:href="#stroked-tag"/></svg>
+      <li class="{{ Request::is('dashboard/books') ? "active" : "" }}"><a href="{{ route('admin.book.index') }}"><svg class="glyph stroked open folder"><use xlink:href="#stroked-folder"></use></svg>Керування книгами</a></li>
+      <li class="{{ Request::is('dashboard/categories') ? "active" : "" }}"><a href="{{ route('admin.categories.index') }}"><svg class="glyph stroked tag"><use xlink:href="#stroked-tag"/></svg>
         Керування категоріями</a></li>
-        <li class="{{ Request::is('dashboard/users') ? "active" : "" }}"><a href="{{ url('dashboard/users') }}"><svg class="glyph stroked male user "><use xlink:href="#stroked-male-user"/></svg>Керування користувачами</a></li>
+        <li class="{{ Request::is('dashboard/users') ? "active" : "" }}"><a href="{{ route('admin.users.index') }}"><svg class="glyph stroked male user "><use xlink:href="#stroked-male-user"/></svg>Керування користувачами</a></li>
         <li class="{{ Request::is('dashboard/messages') ? "active" : "" }}"><a href="{{ url('dashboard/messages') }}"><svg class="glyph stroked open letter"><use xlink:href="#stroked-open-letter"/></svg> Повідомлення <span class="badge">{{ $messages = DB::table('messages')->count() }}</span></a></li>
-        <li class="{{ Request::is('dashboard/telegram') ? "active" : "" }}"><a href="{{ url('dashboard/telegram') }}"><svg class="glyph stroked two messages"><use xlink:href="#stroked-two-messages"/></svg> Керування Telegram Ботом</a></li>
+        <li class="{{ Request::is('dashboard/telegram') ? "active" : "" }}"><a href="{{ route('admin.telegram.index') }}"><svg class="glyph stroked two messages"><use xlink:href="#stroked-two-messages"/></svg> Telegram Бот</a></li>
         <li role="presentation" class="divider"></li>
       </ul>
     </div><!--/.sidebar-->
 
-
     @yield('content')
-    
-    <script src="/js/jquery-1.11.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+
   </body>
   </html>

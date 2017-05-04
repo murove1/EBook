@@ -21,7 +21,7 @@
         <!-- /Errors -->
 
         <!-- Form -->
-        <form class="form-horizontal" role="form" method="post" action="setting">
+        <form class="form-horizontal" role="form" method="post" action="{{ route('password.update')}}">
         
           {{ csrf_field() }}
 

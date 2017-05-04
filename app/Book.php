@@ -17,4 +17,10 @@ class Book extends Model
 	{
 		return $this->belongsTo('App\User');
 	}
+
+	public function scopeSearch($query, $search)
+	{
+		return $query->where('title', 'like', '%' .$search. '%')
+		->orWhere('body', 'like', '%' .$search. '%');
+	}
 }

@@ -8,6 +8,7 @@ use App\Book;
 use Auth;
 use Image;
 use Session;
+use Datatables;
 
 class UserController extends Controller
 {
@@ -24,7 +25,6 @@ class UserController extends Controller
 
 		//User does not exist
 		if ($user == null) {
-
 			return redirect('/');
 		}
 
@@ -45,12 +45,7 @@ class UserController extends Controller
 		return view('profile.edit', ['user' => $user]);
 	}
 
-	public function store(Request $request)
-	{
-		//
-	}
-
-	//update info user
+	//Update info user
 	public function update(Request $request)
 	{
 		$user = Auth::user();
@@ -84,8 +79,32 @@ class UserController extends Controller
 	//User's books
 	public function mybooks()
 	{
+		return view('profile.mybooks');
+	}
+
+	//Get Books user to table
+	public function getmybooks()
+	{
 		$books = Auth::user()->books;
-		return view('profile.mybooks', ['books' => $books]);
+		return Datatables::of($books)
+		->addColumn('action', function ($book) {
+			return '<a href="/book/'.$book->id.'/edit/" class="btn btn-xs  btn-primary" style="margin-bottom: 10px;"><i class="glyphicon glyphicon-edit"></i> Змінити</a>
+
+			<form action="/book/'.$book->id.'" method="POST"><input type="hidden" name="_method" value="DELETE">
+				'.csrf_field().'
+				<button type="submit" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Видалити</button>
+			</form>';
+		})
+		->editColumn('created_at', function ($book) {
+			return $book->created_at->format('d/m/y');
+		})
+		->editColumn('rate', function ($book) {
+			return $book->views;
+		})
+		->editColumn('category', function ($book) {
+			return $book->category->name;
+		})
+		->make(true);
 	}
 
 	//Show page Change password
@@ -102,15 +121,14 @@ class UserController extends Controller
 		$this->validate($request, [
 			'password' => 'required|min:6|max:20',
 			]);
-
 		
 		$user->password = bcrypt($request->input('password'));
-		 //dd($user->password);
+
 		$user->save();
 
 		Session::flash('success','Пароль успішно змінений!');
 
-		return redirect('setting');
+		return redirect()->route('setting');
 	}
 
 }
