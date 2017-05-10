@@ -13,6 +13,8 @@
 
 //Main routes
 Route::get('/', 'BookController@index');
+Route::get('faq', ['uses' => 'PagesController@faq', 'as' => 'faq']);
+Route::get('about', ['uses' => 'PagesController@about', 'as' => 'about']);
 
 //Feedback routes
 Route::get('feedback', ['uses' => 'MessagesController@create', 'as' => 'feedback.create']);
@@ -20,9 +22,10 @@ Route::post('feedback', ['uses' => 'MessagesController@store', 'as' => 'feedback
 
 // Book route
 Route::resource('book', 'BookController');
-
-//Category route
-// Route::resource('category', 'CategoryController');
+Route::get('topview', ['uses' => 'BookController@topview', 'as' => 'book.topview']);
+Route::get('updated', ['uses' => 'BookController@updatedbooks', 'as' => 'book.updated']);
+Route::get('/like/{id}', ['uses' => 'BookController@like', 'as' => 'book.like']);
+Route::get('/likecount/{id}', ['uses' => 'BookController@likecount', 'as' => 'likecount']);
 
 //User routes
 Route::resource('user', 'UserController');
@@ -61,7 +64,8 @@ Route::put('dashboard/user/{user}', ['uses' => 'AdminController@update_user', 'a
 Route::delete('dashboard/user/destroy/{user}', ['uses' => 'AdminController@destroy_user', 'as' => 'admin.user.destroy']);
 
 //Control Messages admin
-Route::get('dashboard/messages', 'AdminController@messages');
+Route::get('dashboard/messages', ['uses' => 'AdminController@messages', 'as' => 'admin.messages.index']);
+Route::delete('dashboard/messages/{message}', ['uses' => 'AdminController@destroy_message', 'as' => 'admin.message.destroy']);
 
 //Send Telegram message admin
 Route::get('dashboard/telegram', ['uses' => 'AdminController@telegram', 'as' => 'admin.telegram.index']);

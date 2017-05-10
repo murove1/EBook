@@ -1,5 +1,7 @@
    @extends('layouts.profile')
 
+    @section('title', 'Додати книгу')
+
    @section('content')
    <div class="row">
      <!-- Panel -->

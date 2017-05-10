@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+@section('title', 'Зворотній зв\'язок')
+
 @section('content')
 <div class="container">
 	<div class="feedback-form">
@@ -14,8 +16,8 @@
 			</div>
 			@endif
 			
-			<label for="name" class="sr-only">Логін / Ім'я</label>
-			<input type="text" name="name" class="form-control" placeholder="Логін / Ім'я" required autofocus>
+			<label for="name" class="sr-only">Ім'я</label>
+			<input type="text" name="name" class="form-control" placeholder="Ім'я" required autofocus>
 			<label for="email" class="sr-only">E-Mail</label>
 			<input type="email" name="email" class="form-control" placeholder="E-Mail" required>
 			<label for="message" class="sr-only">Повідомлення</label>

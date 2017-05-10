@@ -1,5 +1,7 @@
    @extends('layouts.profile')
 
+    @section('title', 'Змінити дані | '.$book->title.' ')
+
    @section('content')
    <div class="row">
      <!-- Panel -->

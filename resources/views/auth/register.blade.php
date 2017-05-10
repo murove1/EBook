@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+@section('title', 'EBook | Реєстрація')
+
 @section('content')
 <div class="container">
     <div class="auth-form">

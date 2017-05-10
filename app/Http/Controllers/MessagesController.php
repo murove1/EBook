@@ -32,10 +32,10 @@ class MessagesController extends Controller
 		$message->message  = $request->input('message');
 
 		$message->save();
-		//alert nice add .......
-
+		
+		//Message sent successfully
 		Session::flash('success','Ваше повідомлення відправлено!');
 
-		return redirect()->route('feedback');
+		return redirect()->route('feedback.create');
 	}
 }

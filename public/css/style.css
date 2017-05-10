@@ -566,3 +566,7 @@ body{
 .ok {background-color:#ee8208;}
 .ok:hover {background-color:#ee7808; color:#fff;}
 /* /social button */
+
+#faqAccordion{
+  margin-top: 50px;
+}

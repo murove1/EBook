@@ -1,5 +1,7 @@
    @extends('layouts.dashboard')
 
+   @section('title', 'Telegram Бот')
+
    @section('content')
    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">         
     <div class="row">
@@ -17,11 +19,11 @@
 
 
 <div class="row">
- <div class="col-lg-12">
+ <div class="col-md-offset-3 col-md-6">
   <div class="panel panel-default">
    <div class="panel-heading">Відправити повідомлення в канал Telegram</div>
    <div class="panel-body">
-    <div class="col-md-offset-3 col-md-6">
+   
      <!-- Errors -->
      @if (count($errors) > 0)
      <div class="alert alert-danger">
@@ -32,9 +34,8 @@
       </ul>
     </div>
     @endif
-  </div>
   <!-- /Errors -->
-  <div class="col-md-offset-3 col-md-6">
+
     <form role="form" method="post" action="{{ route('admin.telegram.store')}}">
       {{ csrf_field() }}
 
@@ -51,7 +52,6 @@
 
       <button type="submit" class="btn btn-primary">Відправити</button>
     </form>
-  </div>
 </div>
 </div>
 </div>

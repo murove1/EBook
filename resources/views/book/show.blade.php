@@ -1,5 +1,7 @@
    @extends('layouts.page')
 
+   @section('title', 'Книга | '.$book->title.' ')
+
    @section('content')
    <!-- Content -->
    <div class="col-md-9">
@@ -11,7 +13,8 @@
              <img class="img-thumbnail" src="/upload/books/img/{{ $book->book_img }}" alt="{{ $book->title }}">
              <div class="col-md-12">
                <a href="/upload/books/file/{{ $book->book_file }}"><button type="button" class="btn btn-success"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Читати</button></a>
-               <button type="button" class="btn btn-success"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+               
+               <button id="{{ $book->id }}" onclick="like(this.id)" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
              </div>
            </div>
          </div>
@@ -20,7 +23,7 @@
              <h4> {{ $book->title }} </h4>
              <div class="book-ratings">
               <p class="pull-right"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ $book->views }}</p>
-              <p class="pull-right"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 100 </p> 
+              <p class="pull-right"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> <span id="likecount"> {{ $book->likes->count() }}</span></p> 
             </div>
             <p><strong>Жанр:</strong> {{ $book->category->name }} </p>
             <p><strong>Автор:</strong> {{ $book->author }} </p>
@@ -73,4 +76,12 @@
 <!-- /Comment -->
 </div>
 <!-- /Content -->
+<script>
+  function like(value){
+    $.get('/like/' + value, function(data){
+     $.get('/likecount/' + value, function onAjaxSuccess(data) {$("#likecount").html(data)});
+   });
+
+  };
+</script>
 @endsection

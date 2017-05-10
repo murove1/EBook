@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Book;
 use App\Category;
+use App\Like;
 use Image;
 use Auth;
+use Session;
 
 class BookController extends Controller
 {
-    //Create,edit,delete only to authorized users
+  //Create,edit,delete only to authorized users
 	public function __construct()
 	{
 		$this->middleware('auth', ['except'=> ['index', 'show']]);
@@ -25,7 +27,10 @@ class BookController extends Controller
 		->search($search)
 		->orderBy('id')
 		->paginate(9);
-		return view('index', ['books' => $books], ['search' => $search]);
+		
+		$categories = Category::all();
+
+		return view('index', ['books' => $books], ['search' => $search], ['categories' => $categories]);
 	}
 
 	//Output book to book page
@@ -170,5 +175,64 @@ class BookController extends Controller
 		
 		return redirect()->route('mybooks');
 	}
+	
+	//Show top view book
+	public function topview()
+	{
+		$books = Book::orderBy('views', 'desc')->paginate(9);
 
+		return view('book.topview', ['books' => $books]);
+	}
+
+	//Show top like book
+	public function toplike()
+	{
+		// $books = Book::orderBy('views', 'desc')->paginate(9);
+
+		// return view('book.topview', ['books' => $books]);
+	}
+
+	//Show new book
+	public function updatedbooks()
+	{
+		$books = Book::orderBy('updated_at', 'desc')->paginate(9);
+
+		return view('book.updated', ['books' => $books]);
+	}
+
+	//Like book
+	public function like(Request $request, $id)
+	{
+		if($request->ajax())
+		{
+			$book = Book::find($id);
+			$user = Auth::user();
+
+			$like = $user->likes()->where('book_id', $book->id)->first();
+
+			if ($like) {
+				$already_like = $like->like;
+
+				if($already_like == 1) {
+					$like->delete();
+				}
+			} 
+			else {
+				$like = new Like();
+				$like->book_id = $book->id;
+				$like->user_id = $user->id;
+				$like->like = 1;
+				$like->save();
+			}	
+		}
+	}
+
+	public function likecount(Request $request, $id){
+		if($request->ajax())
+		{
+			$book = Book::find($id);
+			$count = $book->likes->count();
+			return $count;
+		}
+	}
 }

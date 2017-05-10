@@ -27,14 +27,6 @@ class AdminController extends Controller
 		return view('dashboard.index');
 	}
 
-	//Output message page panel
-	public function messages()
-	{
-		$messages = Message::All();
-
-		return view('dashboard.messages', ['messages' => $messages]);
-	}
-
 	//Control Books for admin
 
 	//Output books page panel
@@ -205,7 +197,7 @@ class AdminController extends Controller
 	{
 		$users = User::All();
 
-		return view('dashboard.users', ['users' => $users]);
+		return view('dashboard.users.users', ['users' => $users]);
 	}
 
 	public function getusers()
@@ -221,8 +213,7 @@ class AdminController extends Controller
 			</form>';
 		})
 		->editColumn('roles', function ($user) {
-			$role = $user->roles->first()->name;
-			return $role;
+			return $user->roles->first()->name;
 		})
 		->editColumn('created_at', function ($user) {
 			return $user->created_at->format('d/m/y');
@@ -385,6 +376,8 @@ class AdminController extends Controller
 		return redirect()->route('admin.categories.index');
 	}
 
+	//Control Telegram for admin
+
 	//Output form for send message telegram
 	public function telegram()
 	{
@@ -407,4 +400,24 @@ class AdminController extends Controller
 		return redirect()->route('admin.telegram.index');
 	}
 
+	//Control Message for admin
+
+	//Output message page panel
+	public function messages()
+	{
+		$messages = Message::orderBy('id', 'desc')->paginate(5);
+
+		return view('dashboard.messages', ['messages' => $messages]);
+	}
+
+	//Delete message
+	public function destroy_message($id)
+	{
+		$message = Message::find($id);
+
+		//delete message
+		$message->delete();
+
+		return redirect()->route('admin.messages.index');
+	}
 }

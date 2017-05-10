@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>@yield('title')</title>
 
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/admin.css" rel="stylesheet">
@@ -76,7 +76,7 @@
       <li class="{{ Request::is('dashboard/categories') ? "active" : "" }}"><a href="{{ route('admin.categories.index') }}"><svg class="glyph stroked tag"><use xlink:href="#stroked-tag"/></svg>
         Керування категоріями</a></li>
         <li class="{{ Request::is('dashboard/users') ? "active" : "" }}"><a href="{{ route('admin.users.index') }}"><svg class="glyph stroked male user "><use xlink:href="#stroked-male-user"/></svg>Керування користувачами</a></li>
-        <li class="{{ Request::is('dashboard/messages') ? "active" : "" }}"><a href="{{ url('dashboard/messages') }}"><svg class="glyph stroked open letter"><use xlink:href="#stroked-open-letter"/></svg> Повідомлення <span class="badge">{{ $messages = DB::table('messages')->count() }}</span></a></li>
+        <li class="{{ Request::is('dashboard/messages') ? "active" : "" }}"><a href="{{ route('admin.messages.index') }}"><svg class="glyph stroked open letter"><use xlink:href="#stroked-open-letter"/></svg> Повідомлення <span class="badge">{{ $messages = DB::table('messages')->count() }}</span></a></li>
         <li class="{{ Request::is('dashboard/telegram') ? "active" : "" }}"><a href="{{ route('admin.telegram.index') }}"><svg class="glyph stroked two messages"><use xlink:href="#stroked-two-messages"/></svg> Telegram Бот</a></li>
         <li role="presentation" class="divider"></li>
       </ul>

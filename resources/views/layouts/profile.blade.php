@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/img/favicon.ico">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>@yield('title')</title>
 
   <!-- Bootstrap -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -47,8 +47,8 @@
             <div id="navbar" class="navbar-collapse collapse">
              <ul class="nav navbar-nav">
                 <li><a href="{{ url('/') }}">Головна</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Про Сайт</a></li>
+                <li><a href="{{ route('faq') }}">FAQ</a></li>
+                <li><a href="{{ route('about') }}">Про Сайт</a></li>
               </ul>
               <div class="nav navbar-nav navbar-right">
                <!-- Authentication caption -->

@@ -810,10 +810,7 @@ h1.page-header {
 	margin-right: 5px;
 }
 
-.chat .panel-body {
-	overflow-y: scroll;
-	height: 300px;
-}
+
 
 .chat-body small {
 	margin-left: 5px;

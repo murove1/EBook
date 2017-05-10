@@ -18,9 +18,16 @@ class Book extends Model
 		return $this->belongsTo('App\User');
 	}
 
+	public function likes()
+	{
+		return $this->hasMany('App\Like');
+	}
+
 	public function scopeSearch($query, $search)
 	{
 		return $query->where('title', 'like', '%' .$search. '%')
-		->orWhere('body', 'like', '%' .$search. '%');
+		->orWhere('body', 'like', '%' .$search. '%')
+		->orWhere('author', 'like', '%' .$search. '%');
 	}
+
 }

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/img/favicon.ico">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>@yield('title')</title>
 
   <!-- Bootstrap -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -52,14 +52,8 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li><a href="{{ url('/') }}">Головна</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Автори <span class="caret"></span></a>
-                  <ul class="dropdown-menu">    
-                    <li><a href="#">1</a></li>   
-                  </ul>
-                </li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Про Сайт</a></li>
+                <li><a href="{{ route('faq') }}">FAQ</a></li>
+                <li><a href="{{ route('about') }}">Про Сайт</a></li>
               </ul>
               <div class="nav navbar-nav navbar-right">
                <!-- Authentication caption -->
@@ -148,7 +142,7 @@
                <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="Пошук" value="{{ isset($search) ? $search : '' }}">
                 <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">
+                  <button class="btn btn-default" type="submit">
                     <span class="glyphicon glyphicon-search"></span>
                   </button>
                 </span>
@@ -170,7 +164,7 @@
                 <table class="table">
                   <tr>
                     <td>
-                      <span class="glyphicon glyphicon-eye-open"></span><a href="#"> Топ переглядів</a>
+                      <span class="glyphicon glyphicon-eye-open"></span><a href="{{ route('book.topview') }}"> Топ переглядів</a>
                     </td>
                   </tr>
                   <tr>
@@ -180,7 +174,7 @@
                       </td>
                     </tr>
                     <td>
-                      <span class="glyphicon glyphicon-time"></span><a href="#"> Новинки</a>
+                      <span class="glyphicon glyphicon-time"></span><a href="{{ route('book.updated') }}"> Обновлені</a>
                     </td>
                   </tr>
                 </table>
@@ -197,42 +191,21 @@
             <div id="collapseTwo" class="panel-collapse collapse">
               <div class="panel-body">
                 <table class="table">
-                  <tr>
-                    <td>
-                      <a href="#">Тест</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="#">Тест</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="#">Тест</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="#">Тест</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="#">Тест</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="#">Тест</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="#">Тест</a>
-                    </td>
-                  </tr>
+             
                 </table>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-bookmark">
+                </span> Ми в Telegram</a>
+              </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+              <div class="panel-body">
+                <a href="https://t.me/ebooktk"><img src="/img/social/telegram.png" alt="telegram" width="225px" height="65px"></a>
               </div>
             </div>
           </div>
@@ -258,9 +231,7 @@
       </div>
     </footer>
     <!-- /footer -->
-
-
-
+    
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -1,5 +1,7 @@
  @extends('layouts.profile')
 
+@section('title', 'Змінити дані профілю')
+
  @section('content')
  <div class="row">
    <!-- Panel -->

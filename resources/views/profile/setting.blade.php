@@ -1,5 +1,7 @@
    @extends('layouts.profile')
 
+   @section('title', 'Змінити пароль')
+
    @section('content')
    <div class="row">
      <!-- Panel -->
@@ -22,7 +24,7 @@
 
         <!-- Form -->
         <form class="form-horizontal" role="form" method="post" action="{{ route('password.update')}}">
-        
+
           {{ csrf_field() }}
 
           @if(Session::has('success'))

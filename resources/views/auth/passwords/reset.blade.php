@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+@section('title', 'EBook | Відновлення паролю')
+
 @section('content')
 <div class="container">
     <div class="reset-pass">
