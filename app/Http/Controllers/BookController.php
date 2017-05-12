@@ -15,10 +15,10 @@ class BookController extends Controller
   //Create,edit,delete only to authorized users
 	public function __construct()
 	{
-		$this->middleware('auth', ['except'=> ['index', 'show']]);
+		$this->middleware('auth', ['except'=> ['index', 'show', 'topview', 'toplike', 'updatedbooks', 'categoriesbooks']]);
 	}
 
-	//Output of books to home page
+	//Output of books,search,categories to home page
 	public function index(Request $request)
 	{
 		//Search book
@@ -28,9 +28,7 @@ class BookController extends Controller
 		->orderBy('id')
 		->paginate(9);
 		
-		$categories = Category::all();
-
-		return view('index', ['books' => $books], ['search' => $search], ['categories' => $categories]);
+		return view('index', ['books' => $books], ['search' => $search]);
 	}
 
 	//Output book to book page
@@ -176,28 +174,38 @@ class BookController extends Controller
 		return redirect()->route('mybooks');
 	}
 	
-	//Show top view book
+	//Show top view book page
 	public function topview()
 	{
 		$books = Book::orderBy('views', 'desc')->paginate(9);
-
+		
 		return view('book.topview', ['books' => $books]);
 	}
 
-	//Show top like book
+	//Show top like book page
 	public function toplike()
 	{
-		// $books = Book::orderBy('views', 'desc')->paginate(9);
+		$books = Book::orderByRelationCount('likes')->paginate(9);
 
-		// return view('book.topview', ['books' => $books]);
+		return view('book.toplike', ['books' => $books]);
 	}
 
-	//Show new book
+	//Show updated book page
 	public function updatedbooks()
 	{
 		$books = Book::orderBy('updated_at', 'desc')->paginate(9);
 
 		return view('book.updated', ['books' => $books]);
+	}
+
+	//Show books by category page
+	public function categoriesbooks($id)
+	{
+		$category = Category::find($id);
+
+		$books = $category->books()->paginate(9);
+
+		return view('book.category', ['books' => $books], ['category' => $category]);
 	}
 
 	//Like book
@@ -227,7 +235,8 @@ class BookController extends Controller
 		}
 	}
 
-	public function likecount(Request $request, $id){
+	public function likecount(Request $request, $id)
+	{
 		if($request->ajax())
 		{
 			$book = Book::find($id);

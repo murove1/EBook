@@ -99,7 +99,7 @@ class UserController extends Controller
 			return $book->created_at->format('d/m/y');
 		})
 		->editColumn('rate', function ($book) {
-			return $book->views;
+			return $book->views .' / '. $book->likes->count();
 		})
 		->editColumn('category', function ($book) {
 			return $book->category->name;

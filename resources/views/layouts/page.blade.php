@@ -134,6 +134,7 @@
 
         <!-- Container -->
         <div class="container">
+        
           <!-- Menu -->
           <div class="col-md-3">
            <div class="panel panel-default">
@@ -170,7 +171,7 @@
                   <tr>
                     <tr>
                       <td>
-                        <span class="glyphicon glyphicon-heart"></span><a href="#"> Топ вподобань</a>
+                        <span class="glyphicon glyphicon-heart"></span><a href="{{ route('book.toplike') }}"> Топ вподобань</a>
                       </td>
                     </tr>
                     <td>
@@ -184,23 +185,32 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-bookmark">
-                </span> Жанри</a>
-              </h4>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse">
-              <div class="panel-body">
-                <table class="table">
-             
-                </table>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                  <span class="glyphicon glyphicon-bookmark"></span> Жанри</a>
+                </h4>
               </div>
-            </div>
-          </div>
-          <div class="panel panel-default">
+              <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <table class="table">
+
+                    @foreach($categories as $category)
+                    <tr>
+                      <td>
+                       <span class="glyphicon glyphicon-bookmark">
+                       </span> <a href="{{ route('book.categories',$category->id) }}">{{ $category->name }}</a>
+                     </td>
+                   </tr>
+                   @endforeach
+
+                 </table>
+               </div>
+             </div>
+           </div>
+           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-bookmark">
-                </span> Ми в Telegram</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-globe">
+                </span> Ми в Соцмережах</a>
               </h4>
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
@@ -210,7 +220,6 @@
             </div>
           </div>
         </div>
-
       </div> 
       <!-- /Menu --> 
 
@@ -218,7 +227,6 @@
 
     </div> 
     <!-- /Container -->
-
 
     <!-- footer -->
     <footer class="footer">
@@ -231,7 +239,6 @@
       </div>
     </footer>
     <!-- /footer -->
-    
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -16,7 +16,7 @@
         </div>
         <div class="ratings">
           <p class="pull-right"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ $book->views }}</p>
-          <p class="pull-right"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{ $book->likes }}</p>
+          <p class="pull-right"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> {{ $book->likes->count() }}</p>
           <p> <span class="glyphicon glyphicon-bookmark"></span> {{ $book->category->name }}</p>
         </div>
       </div>

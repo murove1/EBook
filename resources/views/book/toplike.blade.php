@@ -1,6 +1,6 @@
  @extends('layouts.page')
 
- @section('title', 'Топ переглядів')
+ @section('title', 'Топ вподобань')
 
  @section('content')
  <!-- Content -->

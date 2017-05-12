@@ -1,6 +1,6 @@
  @extends('layouts.page')
 
- @section('title', 'Топ переглядів')
+ @section('title', 'Книги за жанром '.$category->name.'')
 
  @section('content')
  <!-- Content -->
@@ -25,8 +25,8 @@
 
   </div>
   <div class="col-md-12 text-center">
-    {{ $books->links()}}
-  </div>
+   {{ $books->links()}}
+ </div>
 </div>
 <!-- /Content -->
 @endsection

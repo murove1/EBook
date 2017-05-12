@@ -23,6 +23,7 @@ class Book extends Model
 		return $this->hasMany('App\Like');
 	}
 
+	//Search
 	public function scopeSearch($query, $search)
 	{
 		return $query->where('title', 'like', '%' .$search. '%')
@@ -30,4 +31,9 @@ class Book extends Model
 		->orWhere('author', 'like', '%' .$search. '%');
 	}
 
+	//Count Like
+	public function scopeOrderByRelationCount($query, $relation, $direction = 'desc')
+	{
+		return $query->withCount($relation)->orderBy(snake_case($relation) . '_count', $direction);
+	}
 }

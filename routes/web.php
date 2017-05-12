@@ -23,7 +23,9 @@ Route::post('feedback', ['uses' => 'MessagesController@store', 'as' => 'feedback
 // Book route
 Route::resource('book', 'BookController');
 Route::get('topview', ['uses' => 'BookController@topview', 'as' => 'book.topview']);
+Route::get('toplike', ['uses' => 'BookController@toplike', 'as' => 'book.toplike']);
 Route::get('updated', ['uses' => 'BookController@updatedbooks', 'as' => 'book.updated']);
+Route::get('category/{id}', ['uses' => 'BookController@categoriesbooks', 'as' => 'book.categories']);
 Route::get('/like/{id}', ['uses' => 'BookController@like', 'as' => 'book.like']);
 Route::get('/likecount/{id}', ['uses' => 'BookController@likecount', 'as' => 'likecount']);
 
