@@ -11,7 +11,7 @@
           <div class="col-lg-12">
             <div class="col-xs-12 col-sm-4">
               <figure>
-               <img class="img-circle img-responsive" alt="" src="/upload/users/avatar/{{ $user->avatar }}">
+               <img class="img-circle img-responsive avatar" alt="" src="/upload/users/avatar/{{ $user->avatar }}">
              </figure>
            </div>
            <div class="col-xs-12 col-sm-8">

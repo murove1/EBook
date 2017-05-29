@@ -1,13 +1,14 @@
- @extends('layouts.profile')
+ @extends('layouts.page')
 
  @section('title', 'EBook | FAQ')
 
  @section('content')
+ <div class="col-md-9">
  <div class="panel-group" id="faqAccordion">
   <div class="panel panel-default ">
     <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
      <h4 class="panel-title">
-      <a href="#" class="ing">Як добавити свою книгу на сайт?</a>
+      <a href="#" class="ing">Як читати книгу на сайті?</a>
     </h4>
 
   </div>
@@ -22,7 +23,7 @@
 <div class="panel panel-default ">
   <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question1">
    <h4 class="panel-title">
-    <a href="#" class="ing"></a>
+    <a href="#" class="ing">Як добавити свою книгу на сайт?</a>
   </h4>
 
 </div>
@@ -37,7 +38,7 @@
 <div class="panel panel-default ">
   <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question2">
    <h4 class="panel-title">
-    <a href="#" class="ing"> </a>
+    <a href="#" class="ing">Як змінити інформацію про книгу?</a>
   </h4>
 
 </div>
@@ -52,7 +53,7 @@
 <div class="panel panel-default ">
   <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question3">
    <h4 class="panel-title">
-    <a href="#" class="ing"> </a>
+    <a href="#" class="ing">Як змінити інформацію свого профілю?</a>
   </h4>
 
 </div>
@@ -65,6 +66,23 @@
 </div>
 </div>
 
+<div class="panel panel-default ">
+  <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question4">
+   <h4 class="panel-title">
+    <a href="#" class="ing">Як отримувати сповіщення про нові книги?</a>
+  </h4>
+
+</div>
+<div id="question4" class="panel-collapse collapse" style="height: 0px;">
+  <div class="panel-body">
+   <h5><span class="label label-primary">Відповідь</span></h5>
+
+   <p></p>
+ </div>
+</div>
+</div>
+
 </div>
 <!--/panel-group-->
+</div>
 @endsection

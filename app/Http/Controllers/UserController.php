@@ -25,7 +25,7 @@ class UserController extends Controller
 
 		//User does not exist
 		if ($user == null) {
-			return redirect('/');
+			abort(404);
 		}
 
 		return view('profile.show', ['user' => $user]);

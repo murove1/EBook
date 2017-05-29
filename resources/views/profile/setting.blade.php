@@ -24,7 +24,7 @@
 
         <!-- Form -->
         <form class="form-horizontal" role="form" method="post" action="{{ route('password.update')}}">
-
+          <input type='hidden' name='_method' value='PUT'>
           {{ csrf_field() }}
 
           @if(Session::has('success'))

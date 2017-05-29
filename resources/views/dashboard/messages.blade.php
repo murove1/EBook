@@ -1,5 +1,7 @@
    @extends('layouts.dashboard')
 
+   @section('title', 'Повідомлення')
+
    @section('content')
    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">         
     <div class="row">
@@ -17,9 +19,9 @@
 
 
 <div class="row">
- <div class="col-md-offset-3 col-md-6">
+<div class="col-lg-offset-2 col-lg-8">
    <div class="panel panel-default chat">
-     <div class="panel-heading">Переглянути повідомлення <span class="badge">5</span></div>
+     <div class="panel-heading">Переглянути повідомлення <span class="badge"> {{ $count = DB::table('messages')->count() }}</span></div>
      <div class="panel-body">
 
       <ul>
@@ -27,7 +29,7 @@
        @foreach($messages as $message)
        <li class="left clearfix">
         <span class="chat-img pull-left">
-        <img src="/upload/users/avatar/default.png" alt="Avatar" class="img-circle" width="80" height="80">
+          <img src="/upload/users/avatar/default.png" alt="Avatar" class="img-circle" width="80" height="80">
         </span>
         <div class="chat-body clearfix">
           <div class="header">
@@ -41,11 +43,11 @@
                 {{ $message->message}} 
               </p>
             </div>
-            <div class="col-md-offset-10 col-md-2">
+            <div class="col-xs-offset-8 col-xs-4 col-lg-offset-10 col-lg-2">
               <form action="{{ route('admin.message.destroy', $message->id) }}" method="POST">
                 <input type="hidden" name="_method" value="DELETE">
                 {{ csrf_field() }}
-                <button type="submit" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Видалити</button>
+                <button type="submit" style="margin-top: 10px;" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Видалити</button>
               </form>
             </div>
           </li>

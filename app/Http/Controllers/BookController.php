@@ -36,6 +36,11 @@ class BookController extends Controller
 	{
 		$book = Book::find($id);
 
+		//If the book does not exist
+		if ($book == null) {
+			abort('404');
+		}
+
 		//book views
 		$book->views += 1;
 		$book->save();
@@ -106,9 +111,14 @@ class BookController extends Controller
 	public function edit($id)
 	{
 		$book = Book::find($id);
-		
+
 		$categories = Category::all();
 
+		//If the book does not exist
+		if ($book == null) {
+			abort('404');
+		}
+		
 		//Book data protection
 		if ($book->user_id != Auth::user()->id) {
 			return redirect()->route('mybooks');

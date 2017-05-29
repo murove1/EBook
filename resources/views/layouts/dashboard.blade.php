@@ -71,7 +71,6 @@
       <li role="presentation" class="divider"></li>
       <li><a href="{{ url('/') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg>Головна сайту</a></li>
       <li class="{{ Request::is('dashboard') ? "active" : "" }}"><a href="{{ route('dashboard') }}"><svg class="glyph stroked dashboard dial"><use xlink:href="#stroked-dashboard-dial"/></svg>Панель керування</a></li>
-      <li><a href=""><svg class="glyph stroked landscape"><use xlink:href="#stroked-landscape"/></svg> Керування слайдером</a></li>
       <li class="{{ Request::is('dashboard/books') ? "active" : "" }}"><a href="{{ route('admin.book.index') }}"><svg class="glyph stroked open folder"><use xlink:href="#stroked-folder"></use></svg>Керування книгами</a></li>
       <li class="{{ Request::is('dashboard/categories') ? "active" : "" }}"><a href="{{ route('admin.categories.index') }}"><svg class="glyph stroked tag"><use xlink:href="#stroked-tag"/></svg>
         Керування категоріями</a></li>

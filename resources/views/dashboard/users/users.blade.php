@@ -21,7 +21,7 @@
    			<div class="panel panel-default">
    				<div class="panel-heading">Керування користувачами</div>
    				<div class="panel-body">
-   					<table id="TableUsers" class="table table-bordered">
+   					<table id="TableUsers" class="table table-bordered" style="width: 100%">
    						<thead>
                         <tr>
                          <th>Id</th>
@@ -44,6 +44,7 @@
   $(document).ready(function() {
     $('#TableUsers').DataTable( {
       "lengthChange": false,
+      "scrollX": true,
       "ajax": "{{ route('getusers') }}",
       "columns": [
       {data: 'id', name: 'id'},

@@ -14,7 +14,7 @@
              <div class="col-md-12">
                <a href="/upload/books/file/{{ $book->book_file }}"><button type="button" class="btn btn-success"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Читати</button></a>
                
-               <button id="{{ $book->id }}" onclick="like(this.id)" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
+               <button id="{{ $book->id }}" onclick="like(this.id)" class="btn btn-danger"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
              </div>
            </div>
          </div>

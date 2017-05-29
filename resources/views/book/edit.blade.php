@@ -56,8 +56,9 @@
             <select class="form-control" name="category_id">
               
               @foreach($categories as $category)
-              <option value='{{ $category->id }}'>{{ $category->name }}</option>
+              <option {{ $category->id === $book->category_id ? 'selected' : '' }} value='{{ $category->id }}'>{{ $category->name }}</option>
               @endforeach
+              
 
             </select>
           </div>

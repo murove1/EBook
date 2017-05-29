@@ -53,10 +53,13 @@
 						<div class="form-group">
 							<label>Роль</label>
 							<select class="form-control" name="roles">
-								<option name="role_user">User</option>
-								<option name="role_admin">Admin</option>
+
+								@foreach($roles as $role)
+              <option {{ $role->id === $user->roles()->first()->id ? 'selected' : '' }} value='{{ $role->id }}'>{{ $role->name }}</option>
+              @endforeach
 							</select>
 						</div>
+
 
 						<div class="form-group">
 							<label>Про себе:</label>

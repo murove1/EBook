@@ -28,7 +28,7 @@
                <button class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Додати</button>
              </a>
            </div>
-           <table id="TableCategories" class="table table-bordered">
+           <table id="TableCategories" class="table table-bordered" style="width: 100%">
              <thead>
               <tr>
                <th>Id</th>
@@ -48,6 +48,7 @@
   $(document).ready(function() {
    $('#TableCategories').DataTable( {
     "lengthChange": false,
+    "scrollX": true,
     "ajax": "{{ route('getcategories') }}",
     "columns": [
     {data: 'id', name: 'id'},

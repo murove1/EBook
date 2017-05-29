@@ -34,7 +34,7 @@ Route::resource('user', 'UserController');
 Route::get('mybooks', ['uses' => 'UserController@mybooks', 'as' => 'mybooks']);
 Route::get('mybooks/getmybooks', ['uses' => 'UserController@getmybooks', 'as' => 'getmybooks']);
 Route::get('setting', ['uses' => 'UserController@setting', 'as' => 'setting']);
-Route::post('setting', ['uses' => 'UserController@updatepassword', 'as' => 'password.update']);
+Route::put('setting', ['uses' => 'UserController@updatepassword', 'as' => 'password.update']);
 
 //Admin routes
 Route::get('dashboard', ['uses' => 'AdminController@index', 'as' => 'dashboard']);

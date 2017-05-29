@@ -4,11 +4,14 @@
 
 @section('content')
 <div class="container">
-    <div class="reset-pass">
+    <div class="reset-form">
       <a class="logo-brand" href="/"><span class="glyphicon glyphicon-book"></span> EBook</a>
       <form class="form-reset" role="form" method="POST" action="{{ route('password.request') }}">
         {{ csrf_field() }}
-        <h2 class="form-reset-heading">Скинути пароль від EBook</h2>
+
+        <input type="hidden" name="token" value="{{ $token }}">
+
+        <h2 class="form-reset-heading">Відновити пароль від EBook</h2>
 
         @if (session('status'))
         <div class="alert alert-success">
@@ -16,10 +19,8 @@
         </div>
         @endif
 
-        <input type="hidden" name="token" value="{{ $token }}">
-        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-            <label for="email" class="sr-only">Е-мейл</label>
-            <input id="email" type="email" class="form-control" placeholder="Е-мейл" name="email" value="{{ $email or old('email') }}" required autofocus>
+        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">  
+            <input class="form-control" id="email" type="email" name="email" placeholder="Емейл" value="{{ old('email') }}" required autofocus>
 
             @if ($errors->has('email'))
             <span class="help-block">
@@ -29,8 +30,8 @@
         </div>
 
         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-            <label for="email" class="sr-only">Пароль</label>
-            <input id="password" type="password" class="form-control" placeholder="Пароль" name="password" required>
+            <input class="form-control" id="password" type="password" name="password" placeholder="Пароль">
+
 
             @if ($errors->has('password'))
             <span class="help-block">
@@ -38,9 +39,9 @@
             </span>
             @endif
         </div>
+
         <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-            <label for="email" class="sr-only">Підтвердження пароля</label>
-            <input id="password-confirm" type="password" class="form-control" placeholder="Підтвердження пароля" name="password_confirmation" required>
+            <input class="form-control" id="password-confirm" type="password"  name="password_confirmation" placeholder="Пароль ще раз" required>
 
             @if ($errors->has('password_confirmation'))
             <span class="help-block">
@@ -50,7 +51,9 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block">Скинути</button>
+            <button type="submit" class="btn btn-success">
+                Відновити
+            </button>
         </div>
     </form>
 </div>

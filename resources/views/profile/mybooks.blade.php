@@ -9,13 +9,13 @@
       <div class="panel-body">
         <div class="col-md-12">
           <div class="row">
-            <table id="TablemyBooks" class="table table-responsive table-hover">
+            <table id="TablemyBooks" class="table table-responsive table-hover" style="width: 100%">
               <thead>
                 <tr>
                   <th>Назва</th>
                   <th>Жанр</th>
-                  <th class="hidden-xs">Дата додавання</th>
-                  <th class="hidden-xs">
+                  <th>Дата додавання</th>
+                  <th>
                     <span class="glyphicon glyphicon-eye-open"></span> / 
                     <span class="glyphicon glyphicon-heart"></span>
                   </th>
@@ -35,6 +35,7 @@
 <script>
   $(document).ready(function() {
     $('#TablemyBooks').DataTable( {
+      "scrollX": true,
       "lengthChange": false,
       "ajax": "{{ route('getmybooks') }}",
       "columns": [

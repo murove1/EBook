@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -100,10 +100,11 @@
           <ol class="carousel-indicators">
             <li data-target="#Carousel" data-slide-to="0" class="active"></li>
             <li data-target="#Carousel" data-slide-to="1"></li>
+            <li data-target="#Carousel" data-slide-to="2"></li>
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="item active">
-              <img src="/img/slider/slide1.jpg" alt="Перший слайд">
+              <img src="/img/slider/slide1.jpeg" alt="Перший слайд">
               <div class="container">
                 <div class="carousel-caption">
                   <h1>Електронна бібліотека</h1>
@@ -112,7 +113,16 @@
               </div>
             </div>
             <div class="item">
-              <img src="/img/slider/slide2.jpg" alt="Другий слайд">
+              <img src="/img/slider/slide3.jpeg" alt="Третій слайд">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>Вислів про книгу</h1>
+                  <p>"Хто полюбить книгу, той далеко піде у своєму розвитку. Книга рятує душу від здерев’яніння." - Шевченко Т. Г.</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="/img/slider/slide2.jpeg" alt="Другий слайд">
               <div class="container">
                 <div class="carousel-caption">
                   <h1>Вислів про книгу</h1>
@@ -134,7 +144,7 @@
 
         <!-- Container -->
         <div class="container">
-        
+
           <!-- Menu -->
           <div class="col-md-3">
            <div class="panel panel-default">

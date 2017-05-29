@@ -130,6 +130,11 @@ class AdminController extends Controller
 		
 		$categories = Category::all();
 
+		//If the book does not exist
+		if ($book == null) {
+			abort('404');
+		}
+
 		return view('dashboard.book.edit', ['book' => $book], ['categories' => $categories]);
 	}
 
@@ -229,7 +234,14 @@ class AdminController extends Controller
 	{
 		$user = User::find($id);
 
-		return view('dashboard.users.edit', ['user' => $user]);
+		$roles = Role::all();
+
+		//If the book does not exist
+		if ($user == null) {
+			abort('404');
+		}
+
+		return view('dashboard.users.edit', ['user' => $user], ['roles' => $roles]);
 	}
 
 	//Update info user
@@ -249,14 +261,12 @@ class AdminController extends Controller
 		$user->bio = $request->input('bio');
 		
 		//Roles user
-		// dd($request);
-		
-		if($request->input('roles') == 'User'){
+		if($request->input('roles') == '2'){
 			$user->roles()->detach();
 			$user->roles()->attach(Role::where('name', 'User')->first());
 		}
 
-		if($request->input('roles') == 'Admin'){
+		if($request->input('roles') == '1'){
 			$user->roles()->detach();
 			$user->roles()->attach(Role::where('name', 'Admin')->first());
 		}
@@ -279,6 +289,13 @@ class AdminController extends Controller
 	public function destroy_user($id)
 	{
 		$user = User::find($id);
+
+    //If we remove of the user which include books on the changing of the user admin
+		$books = $user->books;
+		foreach($books as $book){
+			$book->user_id = 1;
+			$book->save();
+		}
 
 		//delete user
 		$user->delete();
@@ -344,6 +361,11 @@ class AdminController extends Controller
 	{
 		$category = Category::find($id);
 
+		//If the book does not exist
+		if ($category == null) {
+			abort('404');
+		}
+
 		return view('dashboard.categories.edit', ['category' => $category]);
 	}
 
@@ -370,7 +392,13 @@ class AdminController extends Controller
 	{
 		$category = Category::find($id);
 
-		//delete category
+		//If we remove categories include books, change to the standard category
+		$books = $category->books;
+		foreach($books as $book){
+			$book->category_id = 1;
+			$book->save();
+		}
+
 		$category->delete();
 
 		return redirect()->route('admin.categories.index');
