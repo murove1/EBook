@@ -24,7 +24,12 @@ class AdminController extends Controller
 	//Output main page admin panel
 	public function index()
 	{
-		return view('dashboard.index');
+		
+		$books = Book::orderBy('created_at', 'desc')->limit(10)->get();
+		
+		$users = User::orderBy('created_at', 'desc')->limit(10)->get();
+
+		return view('dashboard.index', ['books' => $books], ['users' => $users]);
 	}
 
 	//Control Books for admin
@@ -117,7 +122,7 @@ class AdminController extends Controller
 
 		//Telegram Notification if book add
 		if($request->input('telegram_notification') == 1){
-			file_get_contents('https://api.telegram.org/bot346608259:AAGnmJEREq-s6W3aiTUKMfSVJ1csgqXFeCM/sendMessage?chat_id=-1001068698923&text= На+сайт+завантажена+нова+книга: ' .$book->title );
+				$book->notify(new \App\Notifications\BookPublished());
 		}
 
 		return redirect()->route('book.show', $book->id);
@@ -192,7 +197,7 @@ class AdminController extends Controller
 		//delete book
 		$book->delete();
 
-		return redirect('dashboard/books');
+		return redirect()->back();
 	}
 
  	//Control Users for admin
@@ -300,7 +305,7 @@ class AdminController extends Controller
 		//delete user
 		$user->delete();
 
-		return redirect()->route('admin.users.index');
+		return redirect()->back();
 	}
 
 	//Control Category for admin

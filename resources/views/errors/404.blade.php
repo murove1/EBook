@@ -18,13 +18,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
       <!-- Scripts -->
-      <style>
-       .main{ margin-top: 250px; }
-     </style>
      <body>
-
       <div class="container">
-        <div class="main">
+        <div class="main" style="margin-top: 250px;">
          <a class="logo-brand" href="{{ url('/') }}"><span class="glyphicon glyphicon-book"></span> EBook</a>
          <h1 class="error text-center">404</h1>
          <p class="text-center">Щось пішло не так, сторінку не найдено!</p>

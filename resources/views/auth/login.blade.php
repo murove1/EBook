@@ -38,7 +38,7 @@
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-success btn-block">Вхід</button>
-            <!-- <a class="forgot_password" href="{{ route('password.request') }}">Забули свій пароль?</a> -->
+          
             <hr>
             <p class="forgpass"><a href="{{ route('password.request') }}">Забули свій пароль?</a></p>
         </div>

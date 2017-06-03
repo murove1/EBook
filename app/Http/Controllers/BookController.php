@@ -102,7 +102,7 @@ class BookController extends Controller
 
 		//Telegram Notification if book add
 		if($request->input('telegram_notification') == 1){
-			file_get_contents('https://api.telegram.org/bot346608259:AAGnmJEREq-s6W3aiTUKMfSVJ1csgqXFeCM/sendMessage?chat_id=-1001068698923&text= На+сайт+завантажена+нова+книга: ' .$book->title );
+			$book->notify(new \App\Notifications\BookPublished());
 		}
 
 		return redirect()->route('book.show', $book->id);
